@@ -15,4 +15,14 @@ class Training extends Model
 
         protected $table = 'trainings';
 
+        public function room()
+    {
+    return $this->belongsToMany(Room::class)->withPivot(['date', 'duration']);
+}
+
+public function member()
+{
+return $this->belongsToMany(Member::class);
+}
+
 }

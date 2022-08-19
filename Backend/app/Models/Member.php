@@ -14,5 +14,11 @@ class Member extends Model
         ];
 
         protected $table = 'members';
+
+        public function memberships(){
+        return $this->hasOne(Membership::class);
+}
+
+
 }
 
