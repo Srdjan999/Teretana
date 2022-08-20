@@ -17,6 +17,9 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string('coach');
+            $table->date('date');
+            $table->unsignedBigInteger('room_id');
+            $table->foreign('room_id')->references('id')->on('rooms');
         });
     }
 

@@ -37,7 +37,9 @@ class TrainingController extends Controller
     public function store(Request $request)
     {
         $data = Training::insert([
-            'coach' => $request->coach,
+            'coach'=> $request->coach,
+            'date'=> $request->date,
+            'room_id'=> $request->room_id
         ]);
 
         return $data;
@@ -78,7 +80,9 @@ class TrainingController extends Controller
         $training = Training::find($id);
 
         $training->update([
-            'coach' => $request->coach,
+            'coach'=> $request->coach,
+            'date'=> $request->date,
+            'room_id'=> $request->room_id
             ]);
 
             return $training;
@@ -109,20 +113,6 @@ class TrainingController extends Controller
     {
         $training = Training::find($training_id);
         $training->member()->detach($member_id);
-        return $training;
-    }
-
-    public function addRoom(Request $request, $training_id, $room_id)
-    {
-        $training = Training::find($training_id);
-        $training->room()->attach($room_id, ['date' => $request->input('date'), 'duration' => $request->input('duration')]);
-        return $training;
-    }
-
-    public function removeRoom($training_id, $room_id)
-    {
-        $training = Training::find($training_id);
-        $training->member()->detach($room_id);
         return $training;
     }
 

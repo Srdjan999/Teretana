@@ -10,14 +10,15 @@ class Training extends Model
     use HasFactory;
 
     protected $fillable = [
-        'coach'
+        'coach', 'date', 'room_id' //Obrisati date i room_id, ako ne radi
     ];
 
     protected $table = 'trainings';
 
     public function room()
     {
-        return $this->belongsToMany(Room::class)->withPivot(['date', 'duration']);
+        return $this->hasOne(Room::class);
+        //return $this->belongsToMany(Room::class)->withPivot(['date', 'duration']);
     }
 
 
