@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MembershipController;
+use App\Http\Controllers\RoomController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +21,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::resource('membership', MembershipController::class);
+
+Route::resource('room', RoomController::class);
