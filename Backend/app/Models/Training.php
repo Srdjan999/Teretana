@@ -11,18 +11,21 @@ class Training extends Model
 
     protected $fillable = [
         'coach'
-        ];
+    ];
 
-        protected $table = 'trainings';
+    protected $table = 'trainings';
 
-        public function room()
+    public function room()
     {
-    return $this->belongsToMany(Room::class)->withPivot(['date', 'duration']);
-}
+        return $this->belongsToMany(Room::class)->withPivot(['date', 'duration']);
+    }
 
-public function member()
-{
-return $this->belongsToMany(Member::class);
-}
+
+
+    public function member()
+    {
+        
+        return $this->belongsToMany(Member::class);
+    }
 
 }

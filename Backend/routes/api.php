@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MembershipController;
 use App\Http\Controllers\RoomController;
+use App\Http\Controllers\MemberController;
+use App\Http\Controllers\TrainingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,3 +25,21 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::resource('membership', MembershipController::class);
 
 Route::resource('room', RoomController::class);
+
+Route::get('member', [MemberController::class, 'index']);
+Route::get('member/{id}', [MemberController::class, 'show']);
+Route::post('member', [MemberController::class, 'store']);
+Route::put('member/{id}', [MemberController::class, 'update']);
+Route::delete('member/{id}', [MemberController::class, 'destroy']);
+
+Route::get('training', [TrainingController::class, 'index']);
+Route::get('training/{id}', [TrainingController::class, 'show']);
+Route::post('training', [TrainingController::class, 'store']);
+Route::put('training/{id}', [TrainingController::class, 'update']);
+Route::delete('training/{id}', [TrainingController::class, 'destroy']);
+
+Route::post('training/{training_id}/member/{member_id}', [TrainingController::class, 'addMember']);
+Route::delete('training/{training_id}/member/{member_id}', [TrainingController::class, 'removeMember']);
+
+Route::post('training/{training_id}/room/{room_id}', [TrainingController::class, 'addRoom']);
+Route::delete('training/{training_id}/room/{room_id}', [TrainingController::class, 'removeRoom']);

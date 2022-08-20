@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Membership;
 
 class Member extends Model
 {
@@ -15,8 +16,9 @@ class Member extends Model
 
         protected $table = 'members';
 
-        public function memberships(){
-        return $this->hasOne(Membership::class);
+
+    public function memberships(){
+        return $this->hasOne(Membership::class, 'id');
 }
 
 
