@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Training;
+use DB;
 
 class TrainingController extends Controller
 {
@@ -115,5 +116,20 @@ class TrainingController extends Controller
         $training->member()->detach($member_id);
         return $training;
     }
+
+
+    public function attendence($member_id, Request $request)
+    {
+        $data = DB::table('members_trainings')
+        ->join('trainings', 'members_trainings.training_id', '=', 'trainings.id')
+        ->where('member_id', $member_id)
+        ->where('trainings.date', '>=', $request->date_from)
+        ->where('trainings.date', '<=', $request->date_to)
+        ->groupBy('member_id')
+        ->count('member_id');
+
+        return $data;
+    }
+
 
 }

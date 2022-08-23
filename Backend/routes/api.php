@@ -43,3 +43,5 @@ Route::delete('training/{training_id}/member/{member_id}', [TrainingController::
 
 Route::post('training/{training_id}/room/{room_id}', [TrainingController::class, 'addRoom']);
 Route::delete('training/{training_id}/room/{room_id}', [TrainingController::class, 'removeRoom']);
+
+Route::get('training/member/{member_id}', [TrainingController::class, 'attendence']);
